@@ -1,9 +1,9 @@
-defmodule PathGlob.MixProject do
+defmodule PathGlobVendored.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :path_glob,
+      app: :path_glob_vendored,
       version: "0.1.1",
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
@@ -11,9 +11,9 @@ defmodule PathGlob.MixProject do
       package: package(),
       deps: deps(),
       elixirc_paths: elixirc_paths(Mix.env()),
-      name: "PathGlob",
-      source_url: "https://github.com/jonleighton/path_glob",
-      homepage_url: "https://hexdocs.pm/path_glob/",
+      name: "PathGlobVendored",
+      source_url: "https://github.com/jonleighton/path_glob_vendored",
+      homepage_url: "https://hexdocs.pm/path_glob_vendored/",
       docs: [
         main: "readme",
         extras: ["README.md"]
@@ -33,7 +33,7 @@ defmodule PathGlob.MixProject do
 
   defp description() do
     """
-    PathGlob tests whether a file path matches a glob pattern, without touching
+    PathGlobVendored tests whether a file path matches a glob pattern, without touching
     the filesystem. It has the same semantics as Path.wildcard/2.
     """
   end
@@ -41,7 +41,7 @@ defmodule PathGlob.MixProject do
   defp package() do
     [
       licenses: ["Apache-2.0"],
-      links: %{"GitHub" => "https://github.com/jonleighton/path_glob"}
+      links: %{"GitHub" => "https://github.com/jonleighton/path_glob_vendored"}
     ]
   end
 

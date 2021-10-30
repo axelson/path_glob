@@ -1,9 +1,9 @@
-defmodule PathGlobTest do
+defmodule PathGlobVendoredTest do
   use ExUnit.Case, async: true
-  doctest PathGlob
+  doctest PathGlobVendored
 
-  import PathGlob.MatchHelper
-  require PathGlob.MatchHelper
+  import PathGlobVendored.MatchHelper
+  require PathGlobVendored.MatchHelper
 
   # See
   # https://github.com/erlang/otp/blob/master/lib/stdlib/test/filelib_SUITE.erl
@@ -236,7 +236,7 @@ defmodule PathGlobTest do
     test "** pattern" do
       within_tmpdir("foo/bar/baz", fn ->
         assert "foo/bar/../bar" in Path.wildcard("foo/bar/../*")
-        assert PathGlob.match?("foo/bar/../bar", "foo/bar/../*")
+        assert PathGlobVendored.match?("foo/bar/../bar", "foo/bar/../*")
       end)
     end
   end
@@ -257,14 +257,14 @@ defmodule PathGlobTest do
     # Testing this the normal way would cause us to traverse the entire
     # filesystem
     test "double star" do
-      assert PathGlob.match?(absolute("foo/bar"), "/**/bar")
-      assert PathGlob.match?(absolute("foo"), "/**/foo")
-      refute PathGlob.match?(absolute("foo/bar"), "/**/foo")
+      assert PathGlobVendored.match?(absolute("foo/bar"), "/**/bar")
+      assert PathGlobVendored.match?(absolute("foo"), "/**/foo")
+      refute PathGlobVendored.match?(absolute("foo/bar"), "/**/foo")
     end
   end
 
   test "compile/1" do
-    regex = PathGlob.compile("f[o]o")
+    regex = PathGlobVendored.compile("f[o]o")
     assert String.match?("foo", regex)
   end
 end

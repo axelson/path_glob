@@ -1,10 +1,10 @@
-defmodule PathGlob do
+defmodule PathGlobVendored do
   @moduledoc """
   Implements glob matching using the same semantics as `Path.wildcard/2`, but
   without any filesystem interaction.
   """
 
-  import PathGlob.Parser
+  import PathGlobVendored.Parser
   import NimbleParsec, only: [defparsecp: 3]
 
   if System.version() >= "1.11" && Code.ensure_loaded?(Mix) && Mix.env() == :test do
@@ -14,7 +14,7 @@ defmodule PathGlob do
     defmacrop debug(message) do
       quote do
         require Logger
-        Logger.debug("PathGlob: " <> unquote(message))
+        Logger.debug("PathGlobVendored: " <> unquote(message))
       end
     end
   else
@@ -38,10 +38,10 @@ defmodule PathGlob do
 
   ## Examples
 
-      iex> PathGlob.match?("lib/path_glob.ex", "{lib,test}/path_*.ex")
+      iex> PathGlobVendored.match?("lib/path_glob_vendored.ex", "{lib,test}/path_*.ex")
       true
 
-      iex> PathGlob.match?("lib/.formatter.exs", "lib/*", match_dot: true)
+      iex> PathGlobVendored.match?("lib/.formatter.exs", "lib/*", match_dot: true)
       true
   """
   @spec match?(String.t(), String.t(), match_dot: boolean()) :: boolean()
@@ -56,10 +56,10 @@ defmodule PathGlob do
 
   ## Examples
 
-      iex> PathGlob.compile("{lib,test}/*")
+      iex> PathGlobVendored.compile("{lib,test}/*")
       ~r{^(lib|test)/([^\\./]|(?<=[^/])\\.)*$}
 
-      iex> PathGlob.compile("{lib,test}/path_*.ex", match_dot: true)
+      iex> PathGlobVendored.compile("{lib,test}/path_*.ex", match_dot: true)
       ~r{^(lib|test)/path_[^/]*\\.ex$}
   """
   @spec compile(String.t(), match_dot: boolean()) :: Regex.t()

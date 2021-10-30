@@ -1,4 +1,4 @@
-defmodule PathGlob.Parser do
+defmodule PathGlobVendored.Parser do
   import NimbleParsec
 
   @special_chars ~W(? * { } [ ] , /)
