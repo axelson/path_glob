@@ -49,6 +49,7 @@ defmodule PathGlob.MixProject do
   defp deps do
     [
       {:nimble_parsec, "~> 1.1.0", runtime: false},
+      {:rename, "> 0.0.0", only: :dev},
       {:ex_doc, "~> 0.24", only: :dev, runtime: false}
     ]
   end
